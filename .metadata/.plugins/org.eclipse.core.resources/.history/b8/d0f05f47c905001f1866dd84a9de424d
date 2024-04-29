@@ -1,0 +1,10 @@
+package com.smhrd.myapp.congig;
+
+import org.hibernate.annotations.Comment;
+import org.springframework.stereotype.Component;
+
+// DB에 있는 데이터로도 인증 가능하게끔 만들어 주기 위해서 생성한 클래스
+@Component
+public class MyuUerDetailService extends {
+
+}

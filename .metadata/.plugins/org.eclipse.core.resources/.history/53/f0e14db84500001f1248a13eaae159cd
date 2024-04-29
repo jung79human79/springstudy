@@ -1,0 +1,112 @@
+package com.smhrd.controller;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.smhrd.db.BoardMapper;
+import com.smhrd.model.BoardVO;
+import com.smhrd.model.SearchCriteria;
+
+
+
+@Controller 
+public class BoardController {
+	@Autowired  
+	private BoardMapper mapper;
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	// 비동기 통신으로 검색하는 기능
+	@RequestMapping("/search")
+	@ResponseBody // --> 해당하는 매서드는 화면을 이동시키는게 아니고 결과값을 화면에 출력해주는 매서드
+	// 비동기 통신에 쓰는 anno이다
+	// jsp의 type ,text를 하나로 묶는 SearchCriteria 클래스 생성
+	public List<BoardVO> search (SearchCriteria criteria) {  
+		System.out.println("검색데이터>>"+criteria);
+		List<BoardVO> list = mapper.search(criteria);
+		System.out.println(list);
+		System.out.println(list.size());
+		// 리턴된 값이 화면에 출력된다
+		// list는 주소이다 --> json구조로 변환해야한다 --> gson 사용 : 서블릿에서는 이렇게 했다
+		// list에는 주소값이 담겨져 있다 우리가 비동기 통신으로 보냐줘야하는 데이터는 json구조!!
+		// 주소값 -- 변환 --> json
+		// 변환을 스프링에서 자동으로 진행(변환용 라이브러리 필요함 --> pom.xml)
+		return list;
+	}
+	
+	// 글 삭제 기능
+	@RequestMapping("/boardDelete/{idx}")
+	public String boardDelete(@PathVariable("idx") int idx) {
+		
+		mapper.boardDelete(idx);
+		
+		return "redirect:/";
+	}
+	
+	
+	// 글 상세 조회 기능
+	@GetMapping("/boardContent/{idx}")
+	public String detail (@PathVariable("idx") int idx, Model model) {
+		System.out.println("수집데이터>>" + idx);
+		
+		BoardVO result = mapper.boardContent(idx);
+			
+		model.addAttribute("result",result);
+			
+		return "content";
+	}
+	
+	// 글쓰기 기능을 하는 매서드
+	@PostMapping("/register")  
+	public String register (BoardVO vo) {   	
+		
+		System.out.println(vo);
+		
+		mapper.register(vo);
+		
+		return "redirect:/";
+		
+	}
+	
+	
+	// 글쓰기 페이지로 이동하는 매서드 생성
+	@GetMapping("/register")  
+	public String register () {	
+		
+		return "register";
+
+	}
+	
+	
+
+	// 메인페이지
+	@RequestMapping("/") 
+	
+	public String board(Model model) {
+				
+		List<BoardVO> list = mapper.boardList();
+		
+		model.addAttribute("list",list);  
+		
+		
+		return "board";
+		
+	}
+
+	
+	
+}

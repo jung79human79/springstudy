@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.smhrd.db.BoardMapper">
+
+
+
+
+
+<select id="boardList" resultType="com.smhrd.model.BoardVO">
+select * from board  
+</select>
+
+
+<insert id="register" parameterType="com.smhrd.model.BoardVO">
+    insert into board(title,writer,content)
+    values(#{title},#{writer},#{content})     
+</insert>
+
+<select id="search" 
+		resultType="com.smhrd.model.BoardVO" 
+		parameterType="com.smhrd.model.SearchCriteria">
+select * from board 
+<!-- where writer like '%김%'
+ where title like '%게시글%' -->
+<include refid="searchOption"/>
+
+</select>
+
+<sql id="searchOption">
+
+<if test="type == '작성자'">
+	<!-- CONCAT: -->
+	where writer like CONCAT('%',#{text},'%')
+		
+</if>
+
+<!-- type이 제목이었을 때 spl구문 작성 -->
+<if test="type == '제목'">
+	
+	where title like CONCAT('%',#{text},'%')
+		
+</if>
+</sql>
+
+<select id="autocomplete" resultType="com.smhrd.model.BoardVO" 
+            parameterType="com.smhrd.model.SearchCriteria">
+
+
+
+</select>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</mapper>

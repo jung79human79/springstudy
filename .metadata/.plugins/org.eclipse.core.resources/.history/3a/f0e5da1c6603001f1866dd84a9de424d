@@ -1,0 +1,29 @@
+package com.smhrd.myapp.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+
+import com.smhrd.myapp.mapper.MemberMapper;
+
+@Controller
+public class MemberController {
+	
+	@Autowired  
+	private MemberMapper mapper;
+	
+	@GetMapping("/")
+	public String index() {	
+		return "login";	
+	}
+	
+	@GetMapping("/")
+	public String index() {	
+		return "login";	
+	}
+	
+	
+	
+	
+
+}

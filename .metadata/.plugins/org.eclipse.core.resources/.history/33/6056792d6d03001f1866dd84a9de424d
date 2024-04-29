@@ -1,0 +1,20 @@
+package com.smhrd.myapp.mapper;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+import com.smhrd.myapp.entity.MemberEntity;
+
+@Repository
+public interface MemberMapper {
+	
+	
+	public interface MemberMapper extends JpaRepository<Member, Long>{
+		
+		
+		public MemberEntity findByIdAndPw(String id ,String pw);
+		
+		public MemberEntity save(MemberEntity entity);
+	}
+
+}

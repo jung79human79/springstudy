@@ -1,0 +1,16 @@
+spring.application.name=SpringBoot1
+
+# springboot의 모든 환경설정을 담당하는 파일
+# db환경 fc설정 문법 설정 등등
+
+# 1.서버의 포트 번호 설정 -> 내장서버라서 통로를 열어야 함 
+# 톰캣 서버 포트 임의로 아무번호 지정함 -> 내장서버이므로
+server.port = 8087 
+
+
+
+
+
+
+
+
