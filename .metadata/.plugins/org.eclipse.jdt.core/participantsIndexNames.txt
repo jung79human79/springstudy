@@ -11,3 +11,5 @@ C:\Users\SMHRD\Desktop\springstudy\.metadata\.plugins\org.eclipse.jst.jsp.core\j
 \SpringBoot1\src\main\java
 C:\Users\SMHRD\Desktop\springstudy\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\3792174128.index
 \SpringSecurity\src\main\java
+C:\Users\SMHRD\Desktop\springstudy\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\1376362132.index
+\SpringTEST\src\main\java

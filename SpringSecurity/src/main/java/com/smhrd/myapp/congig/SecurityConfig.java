@@ -76,9 +76,9 @@ public class SecurityConfig {
 				// build된 user == userid,pw
 				// redirect:/dashboard
 				.defaultSuccessUrl("/dashboard")
-				.permitAll());
-				//.logout(null)	
-				//.sessionManagement(null);
+				.permitAll())
+				.logout(null)	
+				.sessionManagement(null);
 				
 		// 위1.2번은(http프로토콜관련)는 기본 옵션임 : 정책에 대한 허용
 		// security는 반드시 post방식
